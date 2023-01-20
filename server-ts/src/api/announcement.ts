@@ -1,3 +1,4 @@
+import { AuthData } from '../auth';
 import Koa from 'koa'
 import Router from "koa-router";
 import { pick } from 'lodash'
@@ -21,7 +22,9 @@ const prepareAnnouncementById = async (ctx: Koa.Context, next: () => Promise<any
 
 router
 .get('/', async (ctx,next) => {
-    let query = makeQuery()
+    const authData = ctx.state.authData as AuthData
+    let query = makeQuery().where({ 'announcement.userCode': authData.username})
+
     if (ctx.request.query['keyword']) {
         const keyword = String(ctx.request.query['keyword'])
         query = query.where((it) => {it.where('topic','like', `%${keyword}`).orWhere('description','like',`%${keyword}`)})
