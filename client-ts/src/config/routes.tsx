@@ -34,6 +34,8 @@ const AppRoutes = () => {
       </ProtectedRoute>} />
       <Route path="announcement" element={<ProtectedRoute><AnnouncementList/>
       </ProtectedRoute>} />
-      </Routes>
+    </Routes>
   );
 };
+
+export default AppRoutes;
