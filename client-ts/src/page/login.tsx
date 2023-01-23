@@ -5,6 +5,7 @@ import { Login as LoginIcon } from '@mui/icons-material';
 import { useAuth } from "react-oidc-context";
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAppCtx } from '../AppProvider';
+import './background.css';
 
 function Login() {
 
@@ -23,7 +24,7 @@ function Login() {
         })
       }, 1000)
     }
-  }, [auth, userInfo.ready, action])
+  }, [action, userInfo.ready, action])
 
   switch (auth.activeNavigator) {
     case "signinSilent":
